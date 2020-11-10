@@ -34,6 +34,13 @@ handlePlayerPost(e){
     name: e.target.value
   }})
 }
+handlePlayerUpdate(e){
+  console.log(e.target.value)
+  console.log(this)
+  this.setState({newPlayer: {
+    name: e.target.value
+  }})
+}
 handlePlayerRemove(e){
   console.log(e.target.value)
   console.log(this)
@@ -43,6 +50,23 @@ handlePlayerRemove(e){
 }
 
 handlePost(e){
+  console.log(this.state.newPlayer)
+  e.preventDefault()
+  let url = "https://yanks-roster.herokuapp.com/players"
+  fetch(url, {
+  method: 'POST', 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(this.state.newPlayer),
+})
+    .then(res => res.json())
+    .then(player=>{
+      this.setState({roster: [...this.state.roster, player]})
+      console.log(this.state)
+    })
+}
+handleUpdate(e){
   console.log(this.state.newPlayer)
   e.preventDefault()
   let url = "https://yanks-roster.herokuapp.com/players"
@@ -96,7 +120,13 @@ handleDelete(e){
 
           <form onSubmit={(e)=>this.handleDelete(e)}>
             <h2>Delete player</h2>
-            <input type="text" placeholder="Add a player..." id="createPlayer" onChange={(e)=>this.handlePlayerRemove(e)}/>
+            <input type="text" placeholder="Remove a player..." id="removePlayer" onChange={(e)=>this.handlePlayerRemove(e)}/>
+            <button type="submit">Submit</button>
+          </form>
+
+          <form onSubmit={(e)=>this.handleUpdate(e)}>
+            <h2>Update player</h2>
+            <input type="text" placeholder="New info..." id="updatePlayer" onChange={(e)=>this.handlePlayerUpdate(e)}/>
             <button type="submit">Submit</button>
           </form>
         </div>
