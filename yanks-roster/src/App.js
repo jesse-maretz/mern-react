@@ -25,6 +25,7 @@ class App extends Component{
   componentDidMount(){
     this.fetchRoster()
   }
+
 handlePlayerChange(e){
   console.log(e.target.value)
   console.log(this)
@@ -33,7 +34,7 @@ handlePlayerChange(e){
   }})
 }
 
-handleSubmit(e){
+handlePost(e){
   console.log(this.state.newPlayer)
   e.preventDefault()
   let url = "https://yanks-roster.herokuapp.com/players"
@@ -49,9 +50,23 @@ handleSubmit(e){
       this.setState({roster: [...this.state.roster, player]})
       console.log(this.state)
     })
-    
-
-  
+}
+handleDelete(e){
+  console.log(this.state.newPlayer)
+  e.preventDefault()
+  let url = "https://yanks-roster.herokuapp.com/players"
+  fetch(url, {
+  method: 'DELETE', 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(this.state.newPlayer),
+})
+    .then(res => res.json())
+    .then(player=>{
+      this.setState({roster: [...this.state.roster, player]})
+      console.log(this.state)
+    })
 }
 
   render(){
@@ -65,8 +80,15 @@ handleSubmit(e){
       
       }
         <div>
-          <h1>Add player</h1>
-          <form onSubmit={(e)=>this.handleSubmit(e)}>
+
+          <form onSubmit={(e)=>this.handlePost(e)} className="postForm">
+            <h1>Add player</h1>
+            <input type="text" placeholder="Add a player..." id="createPlayer" onChange={(e)=>this.handlePlayerChange(e)}/>
+            <button type="submit">Submit</button>
+          </form>
+
+          <form onSubmit={(e)=>this.handleDelete(e)}>
+            <h2>Delete player</h2>
             <input type="text" placeholder="Add a player..." id="createPlayer" onChange={(e)=>this.handlePlayerChange(e)}/>
             <button type="submit">Submit</button>
           </form>
