@@ -1,5 +1,6 @@
-import './App.css';
 import React, {Component} from 'react'
+import { Button, Alert, Container } from 'react-bootstrap'
+import './App.css'
 
 class App extends Component{
   constructor(){
@@ -9,6 +10,8 @@ class App extends Component{
       newPlayer: 
       {
         name: "",
+        position: "",
+        number: 0,
         _id: ""
       }
   }
@@ -71,7 +74,7 @@ handleUpdate(e){
   e.preventDefault()
   let url = "https://yanks-roster.herokuapp.com/players"
   fetch(url, {
-  method: 'POST', 
+  method: 'PUT', 
   headers: {
     'Content-Type': 'application/json',
   },
@@ -103,33 +106,43 @@ handleDelete(e){
   render(){
     return (
       <div className="App">
+        <h1>Yankees Roster</h1>
         {this.state.roster.length ? 
         this.state.roster.map((player, i)=>{
-          return <div key={i}>{player.name}<br></br>{player._id}</div>
+          return <div key={i}>
+            {player.name}<br/>
+            {player.position}<br/>
+            {player.number}<br/>
+            {player._id}<br/><br/>
+            </div>
         })
       : ""
-      
       }
-        <div>
-
+        <Container>
           <form onSubmit={(e)=>this.handlePost(e)} className="postForm">
             <h1>Add player</h1>
-            <input type="text" placeholder="Add a player..." id="createPlayer" onChange={(e)=>this.handlePlayerPost(e)}/>
-            <button type="submit">Submit</button>
+            <input type="text" placeholder="Name..." id="createPlayer" onChange={(e)=>this.handlePlayerPost(e)}/>
+            <input type="text" placeholder="Position..." id="createPlayer" onChange={(e)=>this.handlePlayerPost(e)}/>
+            <input type="text" placeholder="Number..." id="createPlayer" onChange={(e)=>this.handlePlayerPost(e)}/>
+            <Button
+            variant="primary"
+            type="submit">
+              Submit
+            </Button>
           </form>
 
           <form onSubmit={(e)=>this.handleDelete(e)}>
             <h2>Delete player</h2>
             <input type="text" placeholder="Remove a player..." id="removePlayer" onChange={(e)=>this.handlePlayerRemove(e)}/>
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
           </form>
 
           <form onSubmit={(e)=>this.handleUpdate(e)}>
             <h2>Update player</h2>
             <input type="text" placeholder="New info..." id="updatePlayer" onChange={(e)=>this.handlePlayerUpdate(e)}/>
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
           </form>
-        </div>
+        </Container>
       </div>
     );
   }
