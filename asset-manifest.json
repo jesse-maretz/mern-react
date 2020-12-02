@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/mern-react/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/mern-react/static/js/main.01c10479.chunk.js",
+    "main.js.map": "/mern-react/static/js/main.01c10479.chunk.js.map",
+    "runtime-main.js": "/mern-react/static/js/runtime-main.b63e2751.js",
+    "runtime-main.js.map": "/mern-react/static/js/runtime-main.b63e2751.js.map",
+    "static/js/2.e44c5b32.chunk.js": "/mern-react/static/js/2.e44c5b32.chunk.js",
+    "static/js/2.e44c5b32.chunk.js.map": "/mern-react/static/js/2.e44c5b32.chunk.js.map",
+    "static/js/3.f9565a0e.chunk.js": "/mern-react/static/js/3.f9565a0e.chunk.js",
+    "static/js/3.f9565a0e.chunk.js.map": "/mern-react/static/js/3.f9565a0e.chunk.js.map",
+    "index.html": "/mern-react/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/mern-react/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.e44c5b32.chunk.js.LICENSE.txt": "/mern-react/static/js/2.e44c5b32.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b63e2751.js",
+    "static/js/2.e44c5b32.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.01c10479.chunk.js"
+  ]
+}
